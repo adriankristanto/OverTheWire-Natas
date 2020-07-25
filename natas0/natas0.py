@@ -29,5 +29,7 @@ comment = div_content.find(text=lambda line: isinstance(line, bs4.Comment))
 
 
 # natas1 password: gtVrDuiDfck831PqWsLEZy5gyDz1clto
-password = re.findall(r'is (.*) ', comment)[0]
+# reference: https://stackoverflow.com/questions/50073779/how-to-return-string-representation-of-re-search-in-python
+# reference: https://stackoverflow.com/questions/1576789/in-regex-what-does-w-mean
+password = re.search(r'is (\w+) ', comment).group(1)
 print(f"natas1 password: {password}")
