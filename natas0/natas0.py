@@ -15,8 +15,6 @@ AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 response = requests.get(url=URL, auth=AUTH)
 # pass the page source to BeautifulSoup
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
-
-
 # the header doesn't seem relevant to the challenge as stated by the following comment
 # <!-- This stuff in the header has nothing to do with the level -->
 body = soup.find('body')
