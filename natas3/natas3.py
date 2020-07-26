@@ -27,9 +27,9 @@ print(f'{response.text}\n')
 # in robots.txt, we find /s3cr3t/ directory
 s3cr3t = re.search(r'Disallow: (/\w+/)', response.text).group(1)
 response = requests.get(url=URL + s3cr3t, auth=AUTH)
-print(f'{response.text}\n')
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
 a = soup.find('a', {'href' : 'users.txt'})
+print(f'{a}\n')
 # in /s3cr3t directory, we find that it contains users.txt
 # here, we used .+ instead of \w+ as the file contains a dot, which is not an alphanumeric character
 users = re.search(r'>(.+)<', str(a)).group(1)
