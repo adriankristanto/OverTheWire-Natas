@@ -14,6 +14,7 @@ response = requests.get(url=URL, auth=AUTH)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
 body = soup.find('body')
 div_content = body.find('div', {'id': 'content'})
+print(f'{div_content}\n')
 comment = div_content.find(text=lambda line: isinstance(line, bs4.Comment))
 
 
