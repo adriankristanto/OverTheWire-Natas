@@ -20,6 +20,7 @@ soup = bs4.BeautifulSoup(response.text, 'html.parser')
 body = soup.find('body')
 # the comment is contained within the div with id=content
 div_content = body.find('div', {'id': 'content'})
+print(f'{div_content}\n')
 # create a lambda function to get the comment containing the password
 # within the body element
 # reference: https://stackoverflow.com/questions/33138937/how-to-find-all-comments-with-beautiful-soup
