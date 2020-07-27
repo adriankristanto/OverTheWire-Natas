@@ -11,6 +11,7 @@ URL = 'http://natas0.natas.labs.overthewire.org'
 AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 
 
+# no need for session as only 1 request is made
 # get the page source
 response = requests.get(url=URL, auth=AUTH)
 # pass the page source to BeautifulSoup

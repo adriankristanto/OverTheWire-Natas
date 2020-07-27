@@ -10,6 +10,7 @@ URL = "http://natas1.natas.labs.overthewire.org"
 AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 
 
+# no need for session as only 1 request is made
 response = requests.get(url=URL, auth=AUTH)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
 body = soup.find('body')
