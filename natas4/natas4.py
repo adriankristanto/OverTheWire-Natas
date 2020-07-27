@@ -25,5 +25,6 @@ div_content = soup.find('body').find('div', {'id' : 'content'})
 print(f'{div_content}\n')
 
 
+# natas5 password: iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq
 password = re.search(r'is (\w+)\n', str(div_content)).group(1)
 print(f'natas5 password: {password}')
