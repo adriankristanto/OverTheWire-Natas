@@ -16,6 +16,9 @@ div_content = soup.find('body').find('div', {'id' : 'content'})
 print(f'{div_content}\n')
 
 
+print(f'{response.cookies}')
+
+
 # we can't gain access as the site says that we aren't logged in
 # going through the request header, we can see that there is a cookie
 # loggedin=0
