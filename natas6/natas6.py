@@ -24,6 +24,9 @@ response = session.get(URL + 'index-source.html')
 # the response contains the source code as encoded html file, e.g. &lt; which should've been <br
 # therefore, we can use html.unescape() to decoded the html file
 source = html.unescape(response.text).replace('<br />', '')
+# html.parser didn't manage to find the div tag with id=content
+# I think it's because the closing tag contains id property, which is not valid
+# reference: https://stackoverflow.com/questions/8887015/closing-tag-with-id-property
 soup = bs4.BeautifulSoup(source, 'lxml')
 div = soup.find('div').prettify()
 print(f'{div}\n')
@@ -51,4 +54,7 @@ data = {
     'submit' : 'Submit+Query'
 }
 response = session.post(URL, data=data)
-print(response.text)
+soup = bs4.BeautifulSoup(response.text, 'html.parser')
+div_content = soup.body.find(id='content')
+password = re.search(r'is (\w+)', str(div_content)).group(1)
+print(f'natas7 password: {password}')
