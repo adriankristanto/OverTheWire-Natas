@@ -42,9 +42,12 @@ print(response.text)
 From burpsuite:
 secret=FOEIUWGHFEEUHOFUOIU&submit=Submit+Query
 """
+# therefore, we need to use both 'secret' and 'submit' as the keys to the data
+# that we will send through the POST request
 regex_search = re.search(r'\$(\w+) = "(\w+)";', response.text)
 data = {
     regex_search.group(1) : regex_search.group(2),
+    # submit accepts any value, here, I just simply follow the value used by burpsuite
     'submit' : 'Submit+Query'
 }
 response = session.post(URL, data=data)
