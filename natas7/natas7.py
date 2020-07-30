@@ -36,5 +36,6 @@ div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {
 print(f'{div_content}\n')
 
 
+# natas8 password: DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe
 password = re.search(r'<br/>\n(\w+)\n\n<!--', str(div_content)).group(1)
 print(f'natas8 password: {password}')
