@@ -56,5 +56,6 @@ data = {
 response = session.post(URL, data=data)
 soup = bs4.BeautifulSoup(response.text, 'html.parser')
 div_content = soup.body.find(id='content')
+# natas7 password: 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9
 password = re.search(r'is (\w+)', str(div_content)).group(1)
 print(f'natas7 password: {password}')
