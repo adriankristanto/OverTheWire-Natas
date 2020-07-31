@@ -37,6 +37,10 @@ function encodeSecret($secret) {
 """
 # the encodeSecret() function will be used on our input & the output will be compared
 # with the variable encodedSecret
-# therefore, firstly, reverse from hex to binary
-# next, we should reverse the binary
-# finally, we should decode the reversed binary
+# therefore, firstly, we need decode the secret from its hex representation
+# next, we should reverse the secret
+# finally, we should base64 decode the reversed binary
+encodedSecret = "3d3d516343746d4d6d6c315669563362"
+ascii_encodedSecret = bytes.fromhex(encodedSecret).decode()[::-1]
+decodedSecret = base64.b64decode(ascii_encodedSecret).decode()
+print(decodedSecret)
