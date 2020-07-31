@@ -44,3 +44,12 @@ encodedSecret = "3d3d516343746d4d6d6c315669563362"
 ascii_encodedSecret = bytes.fromhex(encodedSecret).decode()[::-1]
 decodedSecret = base64.b64decode(ascii_encodedSecret).decode()
 print(decodedSecret)
+
+
+# submit the secret
+data = {
+    'secret' : decodedSecret,
+    'submit' : 'submit'
+}
+response = session.post(URL, data=data) 
+print(response.text)
