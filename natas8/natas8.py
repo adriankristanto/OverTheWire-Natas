@@ -43,7 +43,7 @@ function encodeSecret($secret) {
 encodedSecret = "3d3d516343746d4d6d6c315669563362"
 ascii_encodedSecret = bytes.fromhex(encodedSecret).decode()[::-1]
 decodedSecret = base64.b64decode(ascii_encodedSecret).decode()
-print(decodedSecret)
+print(f'{decodedSecret}\n')
 
 
 # submit the secret
@@ -52,4 +52,11 @@ data = {
     'submit' : 'submit'
 }
 response = session.post(URL, data=data) 
-print(response.text)
+soup = bs4.BeautifulSoup(response.text, 'html.parser')
+div_content = soup.body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
+
+
+# natas9 password: W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+password = re.search(r'is (\w+)\n', str(div_content)).group(1)
+print(f'natas9 password: {password}')
