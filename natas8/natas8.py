@@ -2,6 +2,7 @@ import requests
 import bs4
 import re
 import html
+import base64
 
 
 # configuration for natas8
@@ -25,3 +26,17 @@ source = html.unescape(response.text).replace('<br />', '')
 soup = bs4.BeautifulSoup(source, 'lxml')
 div_content = soup.body.find('div')
 print(f'{div_content.prettify()}\n')
+
+
+# in the source code, we found the following
+"""
+$encodedSecret = "3d3d516343746d4d6d6c315669563362";
+function encodeSecret($secret) {    
+    return bin2hex(strrev(base64_encode($secret)));
+}
+"""
+# the encodeSecret() function will be used on our input & the output will be compared
+# with the variable encodedSecret
+# therefore, firstly, reverse from hex to binary
+# next, we should reverse the binary
+# finally, we should decode the reversed binary
