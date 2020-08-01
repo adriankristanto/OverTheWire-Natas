@@ -13,4 +13,5 @@ AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 session = requests.Session()
 session.auth = AUTH
 response = session.get(URL)
-print(response.text)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
