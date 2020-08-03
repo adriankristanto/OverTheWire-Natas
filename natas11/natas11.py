@@ -74,6 +74,14 @@ function saveData($d) {
 }
 """
 # therefore, firstly, we would need to create the default data & json encode it
+default = {
+    'showpassword' : 'no',
+    'bgcolor' : '#ffffff'
+}
+# reference: https://stackoverflow.com/questions/16311562/python-json-without-whitespaces
+# when json encode the dictionary, remove the whitespaces added by json.dumps()
+# as the whitespaces can affect the xor encryption result
+default = json.dumps(default, separators=(',',':'))
 # next, get the cookie 'data' from the server & base64 decode it
 # then, xor the our json encoded data and the base64 decoded data from the server to get the xor encryption key
 # finally, we create the data that we want, json encode it, xor encrypt with the recovered key and finally, base64 encode it
