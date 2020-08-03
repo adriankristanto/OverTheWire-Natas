@@ -85,6 +85,10 @@ default = json.dumps(default, separators=(',',':'))
 data_cookie = requests.utils.unquote(session.cookies['data'])
 data_cookie = base64.b64decode(data_cookie)
 # then, xor the our json encoded data and the base64 decoded data from the server to get the xor encryption key
+key = ''
+for index in range(len(data_cookie)):
+    key += chr(data_cookie[index] ^ ord(default[index]))
+print(key)
 # finally, we create the data that we want, json encode it, xor encrypt with the recovered key and finally, base64 encode it
 # and send it as a cookie 'data' to the server
 # this should allow us to get the password of the next level
