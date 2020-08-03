@@ -1,7 +1,6 @@
 import requests
 import bs4
 import re
-import urllib.parse
 import base64
 import html
 import json
@@ -83,6 +82,8 @@ default = {
 # as the whitespaces can affect the xor encryption result
 default = json.dumps(default, separators=(',',':'))
 # next, get the cookie 'data' from the server & base64 decode it
+data_cookie = requests.utils.unquote(session.cookies['data'])
+data_cookie = base64.b64decode(data_cookie)
 # then, xor the our json encoded data and the base64 decoded data from the server to get the xor encryption key
 # finally, we create the data that we want, json encode it, xor encrypt with the recovered key and finally, base64 encode it
 # and send it as a cookie 'data' to the server
