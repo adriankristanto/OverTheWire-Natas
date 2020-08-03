@@ -50,5 +50,6 @@ div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.div
 print(f'{div_content}\n')
 
 
+# natas11 password: U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
 password = re.search(r'/etc/natas_webpass/natas11:(\w+)', str(div_content)).group(1)
 print(f'natas11 password: {password}')
