@@ -87,16 +87,23 @@ data_cookie = base64.b64decode(data_cookie)
 # then, xor the our json encoded data and the base64 decoded data from the server to get the xor encryption key
 def xor(plaintext1, plaintext2):
     result = ''
-    for index in range(len(data_cookie)):
-        result += chr(data_cookie[index] ^ ord(default[index]))
+    for index in range(len(plaintext1)):
+        result += chr(plaintext1[index] ^ plaintext2[index])
     return result
 
-key = xor(default, data_cookie)
+key = xor(data_cookie, bytearray(default, 'utf-8'))[:4]
+# the key is qw8J
 print(key)
 # finally, we create the data that we want, json encode it, xor encrypt with the recovered key and finally, base64 encode it
 data = {
     'showpassword' : 'yes',
     'bgcolor' : '#ffffff'
 }
+data = json.dumps(data)
+# repeat the key len(data) // len(key) times
+# then, add the remainder if len(key1) != len(data)
+key1 = key * (len(data)//len(key)) + key[:len(data) % len(key)]
+data = xor(bytearray(data, 'utf-8'), bytearray(key1, 'utf-8'))
+data = base64.b64encode(bytearray(data, 'utf-8'))
 # and send it as a cookie 'data' to the server
 # this should allow us to get the password of the next level
