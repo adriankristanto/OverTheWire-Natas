@@ -1,6 +1,7 @@
 import requests
 import bs4
 import re
+import html
 
 
 # configuration for natas11
@@ -15,3 +16,9 @@ session.auth = AUTH
 response = session.get(URL)
 body = bs4.BeautifulSoup(response.text, 'html.parser').body
 print(f'{body}\n')
+
+
+response = session.get(URL  + 'index-source.html')
+source = html.unescape(response.text).replace('<br />', '')
+body = bs4.BeautifulSoup(source, 'lxml').body
+print(body)
