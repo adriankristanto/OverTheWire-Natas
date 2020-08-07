@@ -104,3 +104,8 @@ files = {
 response = session.post(URL + 'index.php', files=files, data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# get the upload path name using regex
+upload_dir = re.search(r'<a href="(upload/\w+.php)">', str(div_content)).group(1)
+print(upload_dir)
