@@ -10,3 +10,8 @@ AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 URL = 'http://natas13.natas.labs.overthewire.org/'
 
 
+session = requests.Session()
+session.auth = AUTH
+response = session.get(URL)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(div_content)
