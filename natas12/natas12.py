@@ -107,7 +107,7 @@ print(f'{div_content}\n')
 
 
 # get the upload path name using regex
-upload_dir = re.search(r'<a href="(upload/\w+.php)">', str(div_content)).group(1)
+upload_dir = re.search(r'<a href="(upload/\w+\.php)">', str(div_content)).group(1)
 print(f'{upload_dir}\n')
 
 
