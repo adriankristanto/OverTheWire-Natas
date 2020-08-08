@@ -70,6 +70,8 @@ div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {
 print(f'{div_content}\n')
 
 
+# natas14 password: Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1
 path = re.search(r'<a href="(upload/(\w+)\.php)">', str(div_content))[1]
 response = session.get(URL + path)
-print(response.text)
+password = response.text.split()[1]
+print(f'natas14 password: {password}')
