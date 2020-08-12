@@ -56,6 +56,9 @@ data = {
 }
 response = session.post(URL + 'index.php', data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
-print(div_content)
+print(f'{div_content}\n')
 
 
+# natas15 password: AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J
+password = re.search(r'is (\w+)<', str(div_content))[1]
+print(f'natas15 password: {password}')
