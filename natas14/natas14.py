@@ -30,6 +30,9 @@ if(array_key_exists("username", $_REQUEST)) {
     mysql_select_db('natas14', $link);
     
     $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and password=\"".$_REQUEST["password"]."\"";
+
+    # another way is to use get request instead and pass in debug=1
+    # this will show us what query will be executed
     if(array_key_exists("debug", $_GET)) {
         echo "Executing query: $query<br>";
     }
