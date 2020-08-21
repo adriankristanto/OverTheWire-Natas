@@ -16,3 +16,9 @@ session.auth = AUTH
 response = session.get(URL)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# according to the source code, there are few symbols that are not filtered out by the regex expression
+# which includes $, (, ), {, }
+# one way we can execute a command is through the use of $()
+# for example, $(grep a /etc/natas_webpass/natas17)
