@@ -93,3 +93,5 @@ for i in range(32):
             break
 
 
+# natas18 password: xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP
+print(f'natas18 password: {password}')
