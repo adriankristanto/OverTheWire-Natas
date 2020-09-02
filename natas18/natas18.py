@@ -39,4 +39,4 @@ data = {
 }
 response = session.post(URL, data=data)
 # prints out any number between 1 and 640 for PHPSESSID
-print(response.cookies)
+print(f'Cookies: {response.cookies}\n')
