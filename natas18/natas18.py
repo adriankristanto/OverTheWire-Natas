@@ -59,6 +59,7 @@ for i in range(MIN, MAX+1):
         admin_page = response.text
         break
 
+
 # natas19 password: 4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs
 password = re.search(r'Password: (\w+)', admin_page)[1]
 print(f'natas19 password: {password}')
