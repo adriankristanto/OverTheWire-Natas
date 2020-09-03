@@ -28,4 +28,4 @@ data = {
 }
 response = session.post(URL, data=data)
 # example id: PHPSESSID=3433302d72616e646f6d757365726e616d65
-print(response.cookies)
+print(f'{response.cookies}\n')
