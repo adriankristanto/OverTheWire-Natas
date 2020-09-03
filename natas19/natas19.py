@@ -29,3 +29,9 @@ data = {
 response = session.post(URL, data=data)
 # example id: PHPSESSID=3433302d72616e646f6d757365726e616d65
 print(f'{response.cookies}\n')
+
+
+# get the value of PHPSESSID cookie and get the length of it
+cookies_dict = session.cookies.get_dict()
+phpsessid = cookies_dict['PHPSESSID']
+print(f'length of the cookie: {len(phpsessid)}\n')
