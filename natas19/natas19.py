@@ -34,4 +34,4 @@ print(f'{response.cookies}\n')
 # get the value of PHPSESSID cookie and get the length of it
 cookies_dict = session.cookies.get_dict()
 phpsessid = cookies_dict['PHPSESSID']
-print(f'length of the cookie: {len(phpsessid)}\n')
+print(f'length of the PHPSESSID value: {len(phpsessid)}\n')
