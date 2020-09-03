@@ -37,3 +37,10 @@ phpsessid = cookies_dict['PHPSESSID']
 # it seems that the cookie is hex encoded
 decoded = bytearray.fromhex(phpsessid).decode()
 print(f"{decoded}\n")
+
+
+# after running the script a few times,
+# we can find the following pattern: <id>-<username>
+# for example, 109-randomusername and 292-randomusername
+# therefore, we can try to bruteforce the id and use 'admin' as the username
+# then, hex encode it
