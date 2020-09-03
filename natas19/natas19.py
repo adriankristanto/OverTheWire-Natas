@@ -36,4 +36,4 @@ cookies_dict = session.cookies.get_dict()
 phpsessid = cookies_dict['PHPSESSID']
 # it seems that the cookie is hex encoded
 decoded = bytearray.fromhex(phpsessid).decode()
-print(decoded)
+print(f"{decoded}\n")
