@@ -1,6 +1,7 @@
 import requests
 import bs4
 import re
+import base64
 
 
 # configuration for natas19
@@ -31,7 +32,6 @@ response = session.post(URL, data=data)
 print(f'{response.cookies}\n')
 
 
-# get the value of PHPSESSID cookie and get the length of it
+# get the value of PHPSESSID cookie
 cookies_dict = session.cookies.get_dict()
 phpsessid = cookies_dict['PHPSESSID']
-print(f'length of the PHPSESSID value: {len(phpsessid)}\n')
