@@ -47,7 +47,6 @@ if(!file_exists($filename)) {
 } 
 """
 # first call to myread() will simply return "" as the file name has not been written by mywrite()
-# therefore, the first request will be passed to mywrite()
 """
 foreach($_SESSION as $key => $value) {
     debug("$key => $value");
@@ -55,7 +54,7 @@ foreach($_SESSION as $key => $value) {
 }
 file_put_contents($filename, $data); 
 """
-# where it would write the key and value of current $_SESSION into the file
+# mywrite() then write the key and value of current $_SESSION into the file.
 # in the subsequent call to myread(), which is at the next request,
 """
 $data = file_get_contents($filename);
@@ -67,5 +66,5 @@ foreach(explode("\n", $data) as $line) {
 } 
 """
 # it will read the content of the file, which consisted of $key and $value of $_SESSION
-# and set them as the content of the new $_SESSION array
+# and set them as the content of the new $_SESSION array.
 # our goal is to make mywrite() writes "admin 1" to the file and myread() assigns '1' to $_SESSION["admin"]
