@@ -40,6 +40,7 @@ if(array_key_exists("name", $_REQUEST)) {
 # in the source code, session_start() is called before the above code
 # then, mywrite() will be executed when the session needs to be saved
 # which is when the request has been processed and the webpage returned back to the client.
+# NOTE: the $sid used as the argument to both myread() and mywrite() is obtained from PHPSESSID cookie
 """
 if(!file_exists($filename)) {
     debug("Session file doesn't exist");
