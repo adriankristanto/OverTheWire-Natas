@@ -100,3 +100,7 @@ print(f'{div_content}\n')
 # therefore, we need one more request for myread() to properly read the written file
 # 2. the PHPSESSID cookie must be the same for the subsequent call
 # otherwise, myread() will read from another file instead of the existing one
+# we can simply make a get request to the server to trigger myread()
+response = session.get(URL)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
