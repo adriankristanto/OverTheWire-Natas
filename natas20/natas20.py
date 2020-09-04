@@ -104,3 +104,8 @@ print(f'{div_content}\n')
 response = session.get(URL)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# natas21 password: IFekPyrQXftziDEsUr3x21sYuahypdgJ
+password = re.search(r'Password: (\w+)', response.text)[1]
+print(f'natas21 password: {password}')
