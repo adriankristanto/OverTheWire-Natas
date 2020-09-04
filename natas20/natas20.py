@@ -68,3 +68,18 @@ foreach(explode("\n", $data) as $line) {
 # it will read the content of the file, which consisted of $key and $value of $_SESSION
 # and set them as the content of the new $_SESSION array.
 # our goal is to make mywrite() writes "admin 1" to the file and myread() assigns '1' to $_SESSION["admin"]
+
+
+# one attack that we can perform is to set the name to contain a newline
+# for example, randomusername\nadmin 1.
+# therefore, mywrite() will write it as follows
+"""
+name randomusername\nadmin 1
+"""
+# since myread() will split the content of the file based on a newline,
+# the file will be read as follows
+"""
+name randomusername
+admin 1
+"""
+# and thus, it should give us the admin page
