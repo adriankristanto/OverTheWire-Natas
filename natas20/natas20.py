@@ -34,19 +34,19 @@ if(array_key_exists("name", $_REQUEST)) {
 }
 """
 # there are 2 important functions in the source code
-# which are myread() and mywrite()
+# which are myread() and mywrite().
 # myread() will be executed when session_start() is called
 # reference: https://www.php.net/manual/en/function.session-set-save-handler.php
 # in the source code, session_start() is called before the above code
 # then, mywrite() will be executed when the session needs to be saved
-# which is when the request has been processed and the webpage returned back to the client
+# which is when the request has been processed and the webpage returned back to the client.
 """
 if(!file_exists($filename)) {
     debug("Session file doesn't exist");
     return "";
 } 
 """
-# first call to myread() will simply return "" as the file name has not been written by mywrite()
+# first call to myread() will simply return "" as the file name has not been written by mywrite().
 """
 foreach($_SESSION as $key => $value) {
     debug("$key => $value");
