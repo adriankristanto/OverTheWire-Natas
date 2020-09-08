@@ -19,5 +19,11 @@ print(f'{div_content}\n')
 
 
 # get the source code
-response = session.get(URL + 'index-source.html')
+# response = session.get(URL + 'index-source.html')
 # print(response.text)
+
+
+# get the second site
+response = session.get(re.search(r'href="(.+)"', str(div_content))[1])
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
