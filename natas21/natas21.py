@@ -80,3 +80,8 @@ session.cookies.clear()
 response = session.get(URL, cookies=target_cookie)
 div_content = bs4.BeautifulSoup(response.text, "html.parser").body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# natas22 password: chG9fbe1Tq2eWVMgjYYD1MsfIvN461kJ
+password = re.search(r'Password: (\w+)', response.text)[1]
+print(f'natas22 password: {password}')
