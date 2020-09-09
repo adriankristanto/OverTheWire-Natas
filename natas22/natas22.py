@@ -40,3 +40,15 @@ if(array_key_exists("revelio", $_GET)) {
 # check whether we are the admin or not
 # if we are not the admin, we will get redirected to the root directory
 # this is shown when the server returns Location: / in the header
+"""
+<?
+    if(array_key_exists("revelio", $_GET)) {
+    print "You are an admin. The credentials for the next level are:<br>";
+    print "<pre>Username: natas23\n";
+    print "Password: <censored></pre>";
+    }
+?> 
+"""
+# if we managed to not get redirected, however, it will show the password to us
+# therefore, we just simply need to disable redirects
+# note that we still need to include the revelio parameter
