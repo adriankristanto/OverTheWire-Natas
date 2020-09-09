@@ -65,3 +65,9 @@ params = {
 response = session.get(SECOND_URL, params=params)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# since the first and second websites are colocated,
+# if we get an admin access on the second website and we pass the cookie,
+# PHPSESSID, to the first website,
+# we can get the admin access as well on the first website
