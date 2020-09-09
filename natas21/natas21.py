@@ -32,4 +32,21 @@ print(f'{div_content}\n')
 
 # get the source code for the second site
 # response = session.get(SECOND_URL + 'index-source.html')
-# # print(response.text)
+# print(response.text)
+
+
+# since there is nothing interesting in the source code of the first webpage,
+# we can safely skip it and go to the second website immediately
+# in the second website, there is the following lines of code
+"""
+
+// if update was submitted, store it
+if(array_key_exists("submit", $_REQUEST)) {
+    foreach($_REQUEST as $key => $val) {
+    $_SESSION[$key] = $val;
+    }
+}
+"""
+# which will store any parameters that we submit to the webpage, including the admin parameter
+# this is the main vulnerability.
+# therefore, we can ignore the rest of the code that performs the validation
