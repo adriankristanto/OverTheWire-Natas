@@ -56,3 +56,9 @@ source = bs4.BeautifulSoup(source, 'lxml')
 # reference: https://stackoverflow.com/questions/20761906/why-string-is-greater-or-less-than-the-integer
 # php will check the front of the string, if it doesn't contain any digit, it will set the value to 0.
 # so if we start the string with any integer greater than 10, then php will set the value to an integer greater than 10
+params = {
+    'passwd' : '20iloveyou'
+}
+response = session.get(URL, params=params)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
