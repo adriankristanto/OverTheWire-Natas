@@ -47,3 +47,12 @@ source = bs4.BeautifulSoup(source, 'lxml')
 # reference: https://www.php.net/manual/en/function.strstr.php
 # next, it will compare the string that we submitted with the integer 10
 # if the string is greater than 10, it will return True and we will get the admin page
+
+
+# as mentioned before, we need to include the string "iloveyou" in the password
+# to bypass the strstr() check
+# next, we need to include an integer > 10 in front of the password
+# for example, 15iloveyou to bypass the integer check
+# reference: https://stackoverflow.com/questions/20761906/why-string-is-greater-or-less-than-the-integer
+# php will check the front of the string, if it doesn't contain any digit, it will set the value to 0.
+# so if we start the string with any integer greater than 10, then php will set the value to an integer greater than 10
