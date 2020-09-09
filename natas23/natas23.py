@@ -8,3 +8,7 @@ USERNAME = 'natas23'
 PASSWORD = 'D0vlad33nQF0Hz2EP255TP5wSW9ZsRSE'
 AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 URL = 'http://natas23.natas.labs.overthewire.org/'
+
+
+session = requests.Session()
+session.auth = AUTH
