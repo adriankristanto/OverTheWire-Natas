@@ -47,3 +47,7 @@ source = bs4.BeautifulSoup(source, 'lxml')
 # when comparing strings and non-string objects, it will return unexpected values
 # reference: https://www.php.net/manual/en/function.strcmp.php
 # for example, strcmp("foo", array()) => NULL + PHP Warning
+
+
+# in PHP, NULL == 0, therefore, we can simply send an empty array to the website
+# and it should give the credentials to the next level
