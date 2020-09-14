@@ -1,6 +1,7 @@
 import requests
 import bs4
 import re
+import html
 
 
 # configuration for natas25
@@ -16,3 +17,8 @@ session.auth = AUTH
 response = session.get(URL)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# get the source code
+response = session.get(URL + 'index-source.html')
+# print(html.unescape(response.text).replace('<br />', ''))
