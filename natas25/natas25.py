@@ -81,3 +81,6 @@ function logRequest($message){
 # attack
 print(session.cookies.get_dict())
 PHPSESSID = session.cookies.get_dict().get('PHPSESSID')
+# since the string "language/" will be prepended to the string that we submitted to the webserver,
+# we need to go to the parent directory and then go to the logs directory to access the log files
+logs_location = f'....//logs/natas25_{PHPSESSID}.log'
