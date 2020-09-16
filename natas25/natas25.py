@@ -64,3 +64,8 @@ function safeinclude($filename){
 # with the input "....//", we can bypass the input sanitisation
 # so, when "../" is removed from "....//", we stilll get "../"
 # which still allow for directory traversal
+
+
+# since we know the location of the log files based on the source code,
+# we can try to read the log files with the help of the directory traversal
+# attack
