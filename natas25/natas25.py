@@ -66,6 +66,16 @@ function safeinclude($filename){
 # which still allow for directory traversal
 
 
+"""
+function logRequest($message){
+        $log="[". date("d.m.Y H::i:s",time()) ."]";
+        $log=$log . " " . $_SERVER['HTTP_USER_AGENT'];
+        $log=$log . " \"" . $message ."\"\n"; 
+        $fd=fopen("/var/www/natas/natas25/logs/natas25_" . session_id() .".log","a");
+        fwrite($fd,$log);
+        fclose($fd);
+    }
+"""
 # since we know the location of the log files based on the source code,
 # we can try to read the log files with the help of the directory traversal
 # attack
