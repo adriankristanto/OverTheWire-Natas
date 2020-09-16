@@ -87,3 +87,4 @@ logs_location = f'....//logs/natas25_{PHPSESSID}.log'
 params = {
     "lang" : logs_location
 }
+response = session.get(URL, params=params)
