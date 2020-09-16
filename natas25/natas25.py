@@ -69,3 +69,5 @@ function safeinclude($filename){
 # since we know the location of the log files based on the source code,
 # we can try to read the log files with the help of the directory traversal
 # attack
+print(session.cookies.get_dict())
+PHPSESSID = session.cookies.get_dict().get('PHPSESSID')
