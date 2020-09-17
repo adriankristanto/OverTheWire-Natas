@@ -96,3 +96,6 @@ print(f'{div_content}\n')
 # now that we have access to the log file,
 # it seems that we also have control over the log file as
 # our HTTP USER AGENT will be logged into the log file.
+# so, what we can do is to modify the HTTP USER AGENT header 
+# to contain PHP code and let the webserver executes it when 
+# it loads the log file and sends it to our browser
