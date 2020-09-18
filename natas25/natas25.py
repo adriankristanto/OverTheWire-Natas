@@ -99,3 +99,4 @@ print(f'{div_content}\n')
 # so, what we can do is to modify the HTTP USER AGENT header 
 # to contain PHP code and let the webserver executes it when 
 # it loads the log file and sends it to our browser
+print(f'{session.headers}')
