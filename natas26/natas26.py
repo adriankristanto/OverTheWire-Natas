@@ -34,3 +34,11 @@ params = {
 response = session.get(URL, params=params)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# next, we can find the image we requested in the following link
+# img/natas26_<PHPSESSID>.png, which we can try and access
+img_link = re.search(r'img src="(img/natas26_\w+\.png)"', str(div_content))[1]
+response = session.get(URL + '/' + img_link)
+print(response)
+# therefore, we can assume that we have the permission to access the content of the img directory
