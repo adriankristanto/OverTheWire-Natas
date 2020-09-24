@@ -90,3 +90,8 @@ cookies_dict["drawing"] = "Tzo2OiJMb2dnZXIiOjI6e3M6MTU6IgBMb2dnZXIAbG9nRmlsZSI7c
 # create a new cookiejar for the session
 session.cookies.clear()
 requests.utils.cookiejar_from_dict(cookies_dict, session.cookies)
+
+
+# next, we can create the request
+# to create the php file that display the password of natas27
+response = session.get(URL)
