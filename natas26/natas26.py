@@ -42,3 +42,42 @@ img_link = re.search(r'img src="(img/natas26_\w+\.png)"', str(div_content))[1]
 response = session.get(URL + '/' + img_link)
 print(response)
 # therefore, we can assume that we have the permission to access the content of the img directory
+
+
+# in the source code, we have the following Logger class
+# which contains one of the PHP magic methods, __destruct()
+# reference: https://www.php.net/manual/en/language.oop5.magic.php
+"""
+class Logger{
+    private $logFile;
+    private $initMsg;
+    private $exitMsg;    
+
+    <!-- code here -->        
+    
+    function __destruct(){
+        // write exit message
+        $fd=fopen($this->logFile,"a+");
+        fwrite($fd,$this->exitMsg);
+        fclose($fd);
+    }                       
+}
+"""
+# and there is also a function that unserialize the "drawing" cookie
+"""
+$drawing=unserialize(base64_decode($_COOKIE["drawing"]));
+"""
+# which is user controlable
+# therefore, we can conclude that the vulnerability involves PHP deserialization
+# reference: https://medium.com/swlh/exploiting-php-deserialization-56d71f03282a
+# essentially, we can try to create a new Logger object and control its private properties
+# then, we serialise the newly created object and send it to the web server
+# finally, when 
+"""
+$drawing=unserialize(base64_decode($_COOKIE["drawing"]));
+"""
+# is executed, the object will be created
+# then, the __destruct() function will be called when it's done with the object
+# usually, __destruct() is used for garbage collection, in this case,
+# however, it is used to write an exit message
+# therefore, we can use __destruct to write the password of natas27 to a file in the img directory
