@@ -5,7 +5,7 @@ import re
 
 # configuration for natas27
 USERNAME = 'natas27'
-PASSWORD = 'oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T'
+PASSWORD = '55TBjpPZUUJgVP5b3BnbG6ON9uDPVzCJ'
 AUTH = requests.auth.HTTPBasicAuth(USERNAME, PASSWORD)
 URL = 'http://natas27.natas.labs.overthewire.org/'
 
