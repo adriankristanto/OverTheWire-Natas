@@ -108,6 +108,8 @@ print(f'{div_content}\n')
 # now, in the database, there is the original natas28 and natas28 with trailing whitespaces with our password
 # according to the referece site, if we were to select natas28, it will give back the original entry of natas28
 # and thus, we will get back the data of the original natas28
+# NOTE: i believe that when checkCredentials() is executed, the entry of our natas28 user will be returned
+# when the data is dumped, however, the original natas28 entry will be returned
 params = {
     "username" : "natas28",
     "password" : "randompassword"
