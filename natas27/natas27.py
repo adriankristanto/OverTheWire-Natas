@@ -20,3 +20,37 @@ print(f'{div_content}\n')
 # get the source
 response = session.get(URL + 'index-source.html')
 # print(response.text)
+
+
+"""
+if(array_key_exists("username", $_REQUEST) and array_key_exists("password", $_REQUEST)) {
+    $link = mysql_connect('localhost', 'natas27', '<censored>');
+    mysql_select_db('natas27', $link);
+   
+
+    if(validUser($link,$_REQUEST["username"])) {
+        //user exists, check creds
+        if(checkCredentials($link,$_REQUEST["username"],$_REQUEST["password"])){
+            echo "Welcome " . htmlentities($_REQUEST["username"]) . "!<br>";
+            echo "Here is your data:<br>";
+            $data=dumpData($link,$_REQUEST["username"]);
+            print htmlentities($data);
+        }
+        else{
+            echo "Wrong password for user: " . htmlentities($_REQUEST["username"]) . "<br>";
+        }        
+    } 
+    else {
+        //user doesn't exist
+        if(createUser($link,$_REQUEST["username"],$_REQUEST["password"])){ 
+            echo "User " . htmlentities($_REQUEST["username"]) . " was created!";
+        }
+    }
+
+    mysql_close($link);
+}
+"""
+# in the source code, note that if the user doesn't exist it will create a new one with the given username and password
+# this is done by inserting the username and the password into the sql database
+# otherwise, if the user exists, it will check whether the supplied password matches the one used by the existing user
+# if the password matches, then it will dump the user data
