@@ -54,3 +54,7 @@ if(array_key_exists("username", $_REQUEST) and array_key_exists("password", $_RE
 # this is done by inserting the username and the password into the sql database
 # otherwise, if the user exists, it will check whether the supplied password matches the one used by the existing user
 # if the password matches, then it will dump the user data
+
+
+# one attack that can be done here is Constraint-based SQL attack
+# reference: https://dhavalkapil.com/blogs/SQL-Attack-Constraint-Based/
