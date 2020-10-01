@@ -12,3 +12,5 @@ URL = "http://natas28.natas.labs.overthewire.org/"
 
 session = requests.Session()
 session.auth = AUTH
+# get the challenge content
+response = session.get(URL)
