@@ -34,4 +34,3 @@ print(f'{div_content}\n')
 print(response.url)
 # as we can see, the url seems to be url encoded and base64 decoded
 print(urllib.parse.unquote(response.url))
-print(base64.b64decode(urllib.parse.unquote(response.url)))
