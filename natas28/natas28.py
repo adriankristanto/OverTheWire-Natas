@@ -1,6 +1,8 @@
 import requests
 import bs4
 import re
+import urllib
+import base64
 
 
 # configuration for natas28
@@ -26,3 +28,10 @@ data = {
 response = session.post(URL, data=data)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# see the url
+print(response.url)
+# as we can see, the url seems to be url encoded and base64 decoded
+print(urllib.parse.unquote(response.url))
+print(base64.b64decode(urllib.parse.unquote(response.url)))
