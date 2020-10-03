@@ -16,3 +16,13 @@ session.auth = AUTH
 response = session.get(URL)
 div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
 print(f'{div_content}\n')
+
+
+# demonstrate the usage of the site
+data = {
+    "query" : "a",
+    "submit" : "submit"
+}
+response = session.post(URL, data=data)
+div_content = bs4.BeautifulSoup(response.text, 'html.parser').body.find('div', {'id' : 'content'})
+print(f'{div_content}\n')
