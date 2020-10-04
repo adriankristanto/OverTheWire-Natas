@@ -34,3 +34,5 @@ print(f'{div_content}\n')
 print(response.url)
 # as we can see, the query parameter seems to be url encoded and base64 decoded
 query_param = re.search(r'query=(.+)', response.url)[1]
+# unquote the query parameter
+query_param = urllib.parse.unquote(query_param)
