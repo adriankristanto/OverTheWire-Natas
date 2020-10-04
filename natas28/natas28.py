@@ -39,3 +39,4 @@ query_param = urllib.parse.unquote(query_param)
 # base64 decode it and display it as hex
 query_param = base64.b64decode(query_param)
 print(query_param.hex())
+# as we can see, it seems that the query parameter is encrypted as it doesn't show any useful string by itself
