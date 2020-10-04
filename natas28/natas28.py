@@ -36,3 +36,6 @@ print(response.url)
 query_param = re.search(r'query=(.+)', response.url)[1]
 # unquote the query parameter
 query_param = urllib.parse.unquote(query_param)
+# base64 decode it and display it as hex
+query_param = base64.b64decode(query_param)
+print(query_param.hex())
